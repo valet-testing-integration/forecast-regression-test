@@ -5,18 +5,16 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - run: 
-        name: sleep
-        command: sleep $(( ( RANDOM % 1000 )  + 2 )) 
+      - run: sleep 500
 workflows:
   run-jobs:
     jobs:
       - build
-    triggers: #use the triggers key to indicate a scheduled build
-      - schedule:
-          cron: "0 0 * * *" # use cron syntax to set the schedule
-          filters:
-            branches:
-              only:
-                - main
+    # triggers: #use the triggers key to indicate a scheduled build
+    #   - schedule:
+    #       cron: "0 0 * * *" # use cron syntax to set the schedule
+    #       filters:
+    #         branches:
+    #           only:
+    #             - main
 
