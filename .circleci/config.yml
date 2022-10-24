@@ -3,14 +3,13 @@ jobs:
   build:
     docker:
       - image: cimg/base:stable
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
-      - run: sleep $(( ( RANDOM % 1000 )  + 2 )) 
+      - run: 
+        name: sleep
+        command: sleep $(( ( RANDOM % 1000 )  + 2 )) 
 workflows:
-  sleep:
+  run-jobs:
     jobs:
       - build
     triggers: #use the triggers key to indicate a scheduled build
