@@ -1,19 +1,16 @@
 version: 2.1
-
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.5.1-node-browsers
+      - image: cimg/base:stable
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
-      - run: sleep $(( ( RANDOM % 1000 )  + 2 ))
-  
+      - run: sleep $(( ( RANDOM % 1000 )  + 2 )) 
 workflows:
-  version: 2
-  build:
+  sleep:
     jobs:
       - build
     triggers: #use the triggers key to indicate a scheduled build
