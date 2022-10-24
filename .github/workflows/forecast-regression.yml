@@ -1,0 +1,11 @@
+name: Forecast Regression Test Workflow
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: sleep $(( ( RANDOM % 1000 )  + 1 ))
