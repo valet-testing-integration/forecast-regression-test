@@ -5,7 +5,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - run: sleep 500
+      - run: sleep $(( ( RANDOM % 1000 )  + 2 ))
 workflows:
   run-jobs:
     jobs:
