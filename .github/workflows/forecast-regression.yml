@@ -1,11 +1,24 @@
 name: Forecast Regression Test Workflow
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "0 0 * * *"
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - run: sleep $(( ( RANDOM % 1000 )  + 1 ))
+      - name: Checkout repository
+        uses: actions/checkout@v2.3.2
+      - name: Sleep
+        run: |
+          sleep $(( ( RANDOM % 1000 )  + 1 ))
+      - name: Update dummy file
+        run: |
+          echo ${{github.run_number}} > dummy_file.txt
+          git config --global user.name "your username"
+          git config --global user.email "your email"
+
+          git add -A
+          git commit -m "commit message"
+          git push
